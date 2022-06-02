@@ -8,28 +8,9 @@
 
 ### 待分析编程语言的选择
 
-### 语言设计评价标准
-
-+ 语法设计
-	+ 高表达能力
-	+ 高可靠性
-	+ 高语义一致性
-
-+ 编译方式设计
-	+ 低内存开销
-	+ 低时间开销
-
-
-### 指标说明
-
-| 项目      | 编程范式                 | 类型系统                        | 编译模式             | 内存模型                     | 应用场景                            |
-|---------|----------------------|-----------------------------|------------------|--------------------------|---------------------------------|
-| Item    | Programming Paradigm | Type System                 | Compilation Mode | Memory Model             | Application Scenarios           |
-| Options | IP/FP/OOP            | Dynamic/Static, Strong/Weak | AOT/JIT          | Manual/GC /Ownership/ARC | Web/Mobile /Enterprise/Embedded |
-
 ### 待分析编程语言概要
 
-| 名称       | 编程范式 | 类型系统     | 编译模式 | 内存模型 | 发布时间 | 应用场景 |
+| Language | Programming Paradigm | Type System | Compilation Mode | Memory Model | Release Date | Application Scenarios |
 | ---------- | -------- | ------------ | -------- | -------- | -------- | -------- |
 | Python     | Multi-paradigm | Dynamic, Strong | JIT      | GC       | 1991 | Web, Enterprise, Embedded |
 | Java       | Multi-paradigm | Static, Strong | AOT&JIT  | GC       | 1995 | Web, Mobile, Enterprise |
@@ -38,7 +19,7 @@
 | Go         | Multi-paradigm | Static, Strong | AOT      | GC       | 2009 | Web, Enterprise |
 | Swift      | Multi-paradigm | Static, Strong | AOT      | ARC | 2014 | Mobile, Enterprise |
 | Dart       | Multi-paradigm | Static, Strong | AOT&JIT | GC | 2011 | Web, Mobile |
-| Rust       | Multi-paradigm | Static, Strong | AOT      | Ownership | 2010 | Web, Enterprise, Embedded |
+| Rust       | Multi-paradigm | Static, Strong | AOT      | Ownership | 2015 | Web, Enterprise, Embedded |
 | Kotlin     | Multi-paradigm | Static, Strong | AOT&JIT | GC | 2016 | Web, Mobile |
 
 ![](C:/Users/dawn/Desktop/latex/iccs-latex/iccs.assets/type.png)
@@ -58,11 +39,22 @@
 \figure{树-编程语言内存模型}	
 ```
 
-![](C:/Users/dawn/Desktop/latex/iccs-latex/iccs.assets/timeline.png)
+![](C:/Users/dawn/Desktop/latex/iccs-latex/iccs.assets/timeline-16534866394691.png)
 
 ```latex
 \figure{一维坐标-编程语言发布时间}
 ```
+
+### 语言设计评价标准
+
++ 语法设计
+	+ 高表达能力
+	+ 高可靠性
+	+ 高语义一致性
+
++ 编译方式设计
+	+ 低内存开销
+	+ 低时间开销
 
 ## 语法设计分析
 
@@ -146,22 +138,21 @@
 | Destructuring assignment | A way to unpack entity with hierarchical structure into distinct variables. |
 | Null safety | A mechanism to prevent behavior that may cause a null pointer exception at compile time. |
 | String interpolation | A way to insert expressions into string literals. |
-| Multiline string | |
 
 #### 其他语法概念支持表
 
 
-| Language   | Destructuring assignment | Null safety | String interpolation | Multiline string |
-| ---------- | ------------------------ | ----------- | -------------------- | ---------------- |
-| Python     | √                        | ×           | Python3.6            | √                |
-| Java       | ×                        | Java8       | ×                    | Java14           |
-| C++        | C++17                    | C++17       | ×                    | ×                |
-| JavaScript | ECMAScript6              | ×           | ECMAScript6          | ECMAScript6      |
-| Go         | ×                        | ×           | ×                    | √                |
-| Swift      | ×                        | √           | √                    | √                |
-| Dart       | ×                        | √           | √                    | √                |
-| Rust       | √                        | √           | ×                    | ×                |
-| Kotlin     | √                        | √           | √                    | √                |
+| Language   | Destructuring assignment | Null safety | String interpolation |
+| ---------- | ------------------------ | ----------- | -------------------- |
+| Python     | √                        | ×           | Python3.6            |
+| Java       | ×                        | Java8       | ×                    |
+| C++        | C++17                    | C++17       | ×                    |
+| JavaScript | ECMAScript6              | ×           | ECMAScript6          |
+| Go         | ×                        | ×           | ×                    |
+| Swift      | ×                        | √           | √                    |
+| Dart       | ×                        | √           | √                    |
+| Rust       | √                        | √           | ×                    |
+| Kotlin     | √                        | √           | √                    |
 
 
 ## 编程方式设计分析

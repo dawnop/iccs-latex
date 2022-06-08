@@ -163,34 +163,7 @@
 
 `\table{面向对象编程概念表}`
 
-### 其他概念
 
-#### 其他语法概念表
-
-| Concept | Meaning |
-| ------- | ------- |
-| Destructuring assignment | A way to unpack entity with hierarchical structure into distinct variables. |
-| Null safety | A mechanism to prevent behavior that may cause a null pointer exception at compile time. |
-| String interpolation | A way to insert expressions into string literals. |
-
-`\table{其他语法概念表}`
-
-#### 其他语法概念支持表
-
-
-| Language   | Destructuring assignment | Null safety | String interpolation |
-| ---------- | ------------------------ | ----------- | -------------------- |
-| Python     | √                        | ×           | Python3.6            |
-| Java       | ×                        | Java8       | ×                    |
-| C++        | C++17                    | C++17       | ×                    |
-| JavaScript | ECMAScript6              | ×           | ECMAScript6          |
-| Go         | ×                        | ×           | ×                    |
-| Swift      | ×                        | √           | √                    |
-| Dart       | ×                        | √           | √                    |
-| Rust       | √                        | √           | ×                    |
-| Kotlin     | √                        | √           | √                    |
-
-`\table{其他语法概念支持表}`
 
 ## 类型系统
 

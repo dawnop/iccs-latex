@@ -1,0 +1,51 @@
+\section{How to evaluate the design of programming languages}
+
+The evaluation criteria here are more application-oriented, to evaluate whether a programming language is "practical" or not. Rather than evaluating whether a programming language is "elegant" as in the features of MPL. In fact, most of the popular languages are not elegant. This is because the development of programming languages is not just a technical matter, but involves political, commercial, and other external factors. A typical example is the evolution of JavaScript. Today, the language standards for JavaScript in mainstream browsers are still not uniform. But this does not prevent JavaScript from being the most popular language for Web applications. But that doesn't stop JavaScript from being the most useful language for Web applications. There are two main aspects that determine whether a language is useful or not. One aspect is its syntactic design. For complex business logic, programming languages are required to provide strong expressiveness, i.e., isolate underlying implementations that are not related to the business logic to accommodate rapid changes. Programming languages are also needed to provide solutions for checking the correctness and reliability of programs. Another aspect is performance, where programming languages are always expected to have a low memory overhead and time overhead, relying heavily on compile-time (native languages) and run-time (virtual machine languages) optimizations.
+
+\begin{table*}[ht]
+    \caption{evaluate}
+    \label{tab:evaluate}
+    \begin{center}
+        \begin{tabular}{ccc}
+            \toprule
+            Evaluation Item & Meaning & Related Content \\
+            \midrule
+            Expressiveness &
+            \makecell[l]{
+                For abstract and complex business logic, programming \\
+                languages can provide a concise way to describe it.
+            }
+            & Programming Paradigm, Type System \\
+            \midrule
+            Maintainability &
+            \makecell[l]{
+                After completing the business logic according to \\
+                standard coding specifications, it is also easy to add new \\ features or
+                fix bugs subsequently.
+            }
+            & Programming Paradigm, Type System \\
+            \midrule
+            Reliability &
+            \makecell[l]{
+                Non-crash under extreme conditions after completing \\
+                business logic according to standard coding specifications.
+            }
+            & Programming Paradigm, Type System \\
+            \midrule
+            Performance &
+            \makecell[l]{
+                Deploying a software system written in this programming \\
+                language takes up fewer hardware resources when running \\ on the target
+                machine.
+            }
+            & Time Overhead, Memory Overhead \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{table*}
+
+\textcolor{red}{!!!!!!!!!machine translation!!!!!!!!!}
+
+In practice, however, programming language design cannot be accurately quantified. The reason for this is twofold. The first is that certain evaluation criteria are not quantitatively analyzed. For expressiveness and reliability, both are descriptions of abstract concepts, reflecting the fact that there are uncountable kinds of situations in practice that cannot all be taken into account. Although a quantitative analysis can be designed, it has to be done by limiting certain specific application scenarios. The second is that the criteria for evaluation are not sufficient. For the sake of structural completeness of the paper, some evaluation criteria that are difficult to measure, such as response time in real time systems, are dropped. For programming languages with garbage collection mechanisms, the performance loss from garbage collection is not negligible. In particular, JVM-based programming languages have the problem of "Stop the World" when garbage collection is performed, which can affect the performance of the programming language. However, this is not considered for the sake of simplicity.
+
+

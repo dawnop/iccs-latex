@@ -4,7 +4,7 @@
 
 In programming language theory(PLT), programming language design has always been an important topic. Because programming language design integrates various branches of PLT, it is the prerequisite for the final realization of programming language. By analyzing the design of modern programming languages(MPL), we can obtain the trend of programming language development, i.e., the programming language design can be fed back from the application point of view.
 
-In recent years, many new MPLs have emerged. According to the definition and research scope of MPLs in the past, it cannot cover the current emerging modern programming languages. Therefore, this paper completes the research content of MPLs to a certain extent. Based on previous research, this paper analyzes the design of MPLs through factors, i.e., programming paradigm, type system, and performance.
+By and large, the overall amount of literature on the analysis of programming language design is relatively small. M Coblenz argues that programming language design should be considered in terms of several theories related to programming languages and gives a way of evaluating programming language design. A Stefika gives some issues to consider in programming language design and argues that type systems are crucial for programming languages. However, the above results focus on a qualitative analysis of programming language design and lack some concrete examples. LA Meyerovich analyzes the usage of popular programming languages to give best practices in programming language design through statistics. This analytical approach is somewhat lacking in theoretical and systematic aspects. F Morandat provides a systematic analysis of the R language, including performance, syntactic design, and application scenarios. The article adopts a better research approach and can be used to broaden the analysis perspective based on that article. Currently, there is a lack of a systematic, theoretical and practical, wide-ranging, application-oriented analysis of programming language design.
 
 By analyzing the design of MPL, this paper draws the influence of different programming language factors on the application. e.g., as programming languages evolve, why does the level of paradigm support in MPLs keep changing, what type systems are in MPLs, how MPLs keep programs efficient, and so on.
 
@@ -37,15 +37,7 @@ Based on the above-mentioned MPL features, several programming languages were se
 | Rust       | Multi-paradigm       | Statically, Strongly  | AOT              | Ownership    | 2015         | Web, Enterprise, Embedded    |
 | Kotlin     | Multi-paradigm       | Statically, Strongly  | AOT&JIT          | GC           | 2016         | Web, Mobile                  |
 
-### Evolution of modern programming languages
-
-Programming languages have a considerable degree of time sensitivity. For different programming languages from different eras spanning a large period of time, one of them is still more "outdated" than the other, although they all conform to the above features of modern programming languages. This is due to the fact that the above principles are in conflict in the time dimension. Indeed, substance over form requires programming languages to abstract the syntactic features required by specific application scenarios, but the needs of application scenarios change over time as they are upgraded through technological iterations. At this point, if you want to add new syntactic features to the original programming language, it is easy to destroy the principle of syntactic bootstrapping and semantic consistency. Therefore, a better solution at this point is to design a new programming language to meet the new requirements from the language design level.
-
-However, there are also factors that hinder the progress of programming language obsolescence. Programming languages take a long time to go from prototype to mass adoption, and during this time, programming languages gradually improve their ecosystem. The ecosystem is like a dense web, and it is almost impossible to phase out programming languages completely once they start to be used on a large scale. For developing computer applications, the ideal state would be for new programming languages to be compatible with older programming languages, thus allowing the new programming languages to inherit the old ecosystem, a typical example being C and C++. However, due to some force majeure, the new programming language is not compatible with the old one. In this case, the compatibility of the programming language ecosystem can be achieved through virtual machines, but only if both the new one and the old one are based on the same virtual machine, a typical example being Java and Kotlin. In addition, there is a more general approach where the new programming language implements the data interface of the old programming language. This is how most languages interact with C/C++. However, there are greater functional limitations to doing so. In the development of programming languages, each one is compatible with some of the past.
-
-The trend is still to phase out old programming languages, but in a slower manner. While the ecosystem of the past can be reused through compatibility with older programming languages, the maintenance challenges caused by older programming languages remain insurmountable. Therefore, compatibility with older programming languages is a compromise. First, develop the new programming language itself through the old ecosystem. Second, restructure the old ecosystem with the new programming language. Eventually, achieve a mass phase-out of the old programming languages.
-
-## How to evaluate the design of programming languages
+### How to evaluate the design of programming languages
 
 The evaluation criteria here are more application-oriented, to evaluate whether a programming language is "practical" or not. Rather than evaluating whether a programming language is "elegant" as in the features of MPL. In fact, most of the popular languages are not elegant. This is because the development of programming languages is not just a technical matter, but involves political, commercial, and other external factors. A typical example is the evolution of JavaScript. Today, the language standards for JavaScript in mainstream browsers are still not uniform. But this does not prevent JavaScript from being the most popular language for Web applications. But that doesn't stop JavaScript from being the most useful language for Web applications. There are two main aspects that determine whether a language is useful or not. One aspect is its syntactic design. For complex business logic, programming languages are required to provide strong expressiveness, i.e., isolate underlying implementations that are not related to the business logic to accommodate rapid changes. Programming languages are also needed to provide solutions for checking the correctness and reliability of programs. Another aspect is performance, where programming languages are always expected to have a low memory overhead and time overhead, relying heavily on compile-time (native languages) and run-time (virtual machine languages) optimizations.
 
@@ -53,3 +45,18 @@ In practice, however, programming language design cannot be accurately quantifie
 
 ## Programming paradigm
 
+Programming paradigms are derived from the way people perceive the real world, and programming languages are tools for formally describing this way of perception.
+
+When people develop software, they model the real world in a computer. The different programming paradigms lie in the different ways of modeling the real world.
+
+Modeling the world often requires solving two problems.
+
+The first is to find out what the basic unit of the world is and call it a first-class citizen.
+
+These first-class citizens can be stored in variables and can be passed as function parameters and function return values.
+
+In short, it is the "data" to be manipulated in the program. 
+
+The second is to find the relationships between these basic units, called calculations.
+
+Calculation can be seen as "operation" of data in the program.

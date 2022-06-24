@@ -1,30 +1,71 @@
 \section{Introduction}
 
-In programming language theory(PLT), programming language design has always been an important topic. Because programming language design integrates various branches of PLT, it is the prerequisite for the final realization of programming language. By analyzing the design of modern programming languages(MPL), we can obtain the trend of programming language development, i.e., the programming language design can be fed back from the application point of view.
+%In programming language theory(PLT), programming language design has always been an important topic. Because programming language design integrates various branches of PLT, it is the prerequisite for the final realization of programming language. By analyzing the design of modern programming languages(MPL), we can obtain the trend of programming language development, i.e., the programming language design can be fed back from the application point of view.
+%
+%By and large, the overall amount of literature on the analysis of
+%programming language design is relatively small.
+%M Coblenz argues that programming language design should be
+%considered in terms of several theories related to programming
+%languages and gives a way of evaluating programming language
+%design\cite{coblenz2018interdisciplinary}.
+%A Stefika gives some issues to consider in programming language
+%design and argues that type systems are crucial for
+%programming languages\cite{stefik2014programming}.
+%However, the above results focus on a qualitative analysis of
+%programming language design and lack some concrete examples.
+%LA Meyerovich analyzes the usage of popular programming languages
+%to give best practices in programming language design
+%through statistics\cite{meyerovich2013empirical}.
+%This analytical approach is somewhat lacking in theoretical and
+%systematic aspects.
+%F Morandat provides a systematic analysis of the R language,
+%including performance, syntactic design, and application
+%scenarios\cite{morandat2012evaluating}.
+%The article adopts a better research approach and can be used to
+%broaden the analysis perspective based on that article.
+%Currently, there is a lack of a systematic, theoretical and
+%practical, wide-ranging, application-oriented analysis of
+%programming language design.
+%
+%By analyzing the design of MPL, this paper draws the influence of different programming language factors on the application. e.g., as programming languages evolve, why does the level of paradigm support in MPLs keep changing, what type systems are in MPLs, how MPLs keep programs efficient, and so on.
 
-By and large, the overall amount of literature on the analysis of
+
+In programming language theory (PLT), programming language
+design has always been an important topic.
+The design of a programming language would influence the way programmers think.
+Alan J. Perlis has said, “A language that doesn't affect the
+way you think about programming, is not worth knowing.”
+
+
+However, the overall amount of literature on the analysis of
 programming language design is relatively small.
-M Coblenz argues that programming language design should be
-considered in terms of several theories related to programming
-languages and gives a way of evaluating programming language
-design\cite{coblenz2018interdisciplinary}.
-A Stefika gives some issues to consider in programming language
-design and argues that type systems are crucial for
+M. Coblenz et.al argues that programming language design should be considered in terms
+of several related theories and proposes a way of evaluating programming
+language design\cite{coblenz2018interdisciplinary}.
+A. Stefika and S. Hanenberg give some issues to consider when designing
+a programming language and argues that type systems are crucial for
 programming languages\cite{stefik2014programming}.
-However, the above results focus on a qualitative analysis of
-programming language design and lack some concrete examples.
-LA Meyerovich analyzes the usage of popular programming languages
-to give best practices in programming language design
-through statistics\cite{meyerovich2013empirical}.
-This analytical approach is somewhat lacking in theoretical and
-systematic aspects.
-F Morandat provides a systematic analysis of the R language,
-including performance, syntactic design, and application
-scenarios\cite{morandat2012evaluating}.
-The article adopts a better research approach and can be used to
-broaden the analysis perspective based on that article.
-Currently, there is a lack of a systematic, theoretical and
-practical, wide-ranging, application-oriented analysis of
-programming language design.
+However, the above papers focus on qualitative analysis and lack
+some concrete examples.
+L. A. Meyerovich and A. S. Rabkin analyze the popularity of commonly
+used programming languages through statistics, which is relatively
+flawed in theoretical and systematic aspects\cite{meyerovich2013empirical}.
+F. Morandat et.al provides a systematic analysis of the R language,
+including performance, syntactic design, and application scenarios\cite{morandat2012evaluating}.
+The paper applies a relatively good method, but it analyzes only one language.
 
-By analyzing the design of MPL, this paper draws the influence of different programming language factors on the application. e.g., as programming languages evolve, why does the level of paradigm support in MPLs keep changing, what type systems are in MPLs, how MPLs keep programs efficient, and so on.
+
+In this paper, by analyzing the design of certain modern programming
+languages (MPLs) we chose, we conduct a systematic, theoretical and practical,
+and application-oriented analysis of the design of multiple programming languages.
+The trend of programming language development is obtained, and some design
+details are explained and discussed.
+Specifically, why the paradigm of MPLs keeps changing, what kind of
+type systems MPLs use, and how MPLs keep programs efficient.
+The paper is organized as following.
+Section 2 describes the features of MPLs and the criteria
+to evaluate the design of programming languages.
+Section 3 presents the analysis of paradigms of multiple MPLs we select in detail.
+Section 4 shows the results of type systems of the selected MPLs.
+Section 5 evaluate the performance of the selected MPLs.
+In Section 6, we give the conclusion.

@@ -11,23 +11,26 @@
 \usepackage{bbding}
 \usepackage{stfloats}
 \usepackage{makecell}
+%\usepackage{algorithm}
+%\usepackage{algorithmicx}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
 T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-    \title{Conference Paper Title*\\
-    {\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
-    should not be used}
-    \thanks{Identify applicable funding agency here. If none, delete this.}
+    \title{Analysis of the Design of Several Modern Programming Languages\\
+%    {\footnotesize \textsuperscript{*}
+%    Note: Sub-titles are not captured in Xplore andshould not be used
+%    }
+%    \thanks{Identify applicable funding agency here. If none, delete this.}
     }
 
-    \author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
-    \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-    \textit{name of organization (of Aff.)}\\
-    City, Country \\
-    email address or ORCID}
+    \author{\IEEEauthorblockN{Xudong Wang, Zhimei Zhang}
+    \IEEEauthorblockA{\textit{College of Computer Science \& Technology} \\
+    \textit{Qingdao University}\\
+    Qingdao, China}
 %    \and
 %    \IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
+%    \IEEEauthorblockN{}
 %    \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
 %    \textit{name of organization (of Aff.)}\\
 %    City, Country \\
@@ -37,23 +40,25 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     \maketitle
 
     \begin{abstract}
-        This document is a model and instructions for \LaTeX.
+        Modern programming languages are analyzed in terms of design through several aspects of programming language theory - programming paradigm, type system, and performance. The programming paradigm section gives a method for evaluating the degree of programming paradigm support and uses this method to evaluate the degree of programming paradigm support in modern programming languages. Thus, the connection between programming paradigms and application scenarios is obtained. The type system section analyzes the commonalities of the type systems of modern programming languages. The performance section quantitatively analyzes the performance of modern programming languages by means of benchmarking, and qualitatively analyzes the connection between the performance of programming languages and application scenarios. Finally, it is concluded that the design and practice of programming languages evolve dynamically, and the design of programming languages is closely related to their application scenarios.
     \end{abstract}
 
     \begin{IEEEkeywords}
-        component, formatting, style, styling, insert
+        modern programming language,
+        programming language design,
+        programming language,
+        programming paradigm,
+        type system,
+        benchmarking.
     \end{IEEEkeywords}
 
 
     \input{content/chap1-introduction}
     \input{content/chap2-several}
-    \input{content/chap3-how}
-    \input{content/chap4-paradigm}
-    \input{content/chap5-type}
-    \input{content/chap6-performance}
-    \input{content/chap7-summary}
-
-%    \input{content/chap2}
+    \input{content/chap3-paradigm.tex}
+    \input{content/chap4-type.tex}
+    \input{content/chap5-performance.tex}
+    \input{content/chap6-summary.tex}
 
 
     \bibliographystyle{IEEEtran}

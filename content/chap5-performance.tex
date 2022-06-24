@@ -19,7 +19,6 @@ This requires that the benchmark test should have a
 clear idea of how the underlying workings work and avoid errors
 due to the uncertainty of the system's state.
 
-
 \subsection{Benchmarking Setup}
 
 %\begin{table}[htb]
@@ -142,11 +141,52 @@ The memory allocation capacity and garbage collection capacity are measured by r
     \end{center}
 \end{table}
 
-As you can see from the table, Java has the best memory allocation and management speed among these programming languages, i.e., it takes very little time. However, Java's memory consumption is relatively the largest among these languages. This is due to the unique memory model of the JVM, which divides the heap area into different generations and uses different garbage collection algorithms for each generation. The advantage of this is obvious, it can greatly increase the efficiency of garbage collection. But at the same time, it takes up more memory than is actually needed for the division. Since Kotlin and Java are both based on the JVM, they have similar performance figures. Kotlin is based on Java8, while Java is based on Java17. From Java9 onwards, the default JVM GC is G1. It has better response time than Parallel, but consumes more memory at the same time. This is in line with the data in the table that Kotlin's time overhead is slightly higher than Java's and memory overhead is slightly lower.
+As we can see from the Table\ref{tab:binary-trees-1} and Table\ref{tab:binary-trees-2},
+Java has the best memory allocation and management
+speed among these programming languages.
+However, Java's memory consumption is relatively the largest among these languages.
+This is due to the unique memory model of the JVM, which divides the heap area into
+different generations and uses different garbage collection algorithms for each generation.
+The advantage of this is obvious, it can greatly increase the efficiency of garbage
+collection. But at the same time, it takes up more memory than is actually needed for the division.
+Since Kotlin and Java are both based on the JVM, they have similar performance figures.
+Kotlin is based on Java8, while Java is based on Java17. From Java9 onwards, the default JVM GC is G1.
+It has better response time than Parallel, but consumes more memory at the same time.
+This is in line with the data in the table that Kotlin's time overhead is slightly higher
+than Java's and memory overhead is slightly lower.
 
-For the two different compilers for C++, Clang and GCC, the memory overhead is almost the same. This is because both of them manage memory manually. However, Clang has a lower time overhead than GCC. This comes from compiler optimizations, and Clang's optimizations are better than GCC's. In addition, the architecture of the compilers is different: Clang-LLVM uses a low-coupling front- and back-end architecture, while GCC uses a front- and back-end coupling architecture. This is due to the fact that GCC is relatively old and limited by its age. We can see that compile-time optimization of the compiler takes a more important role for native compiled languages.
+In Table\ref{tab:binary-trees-1} and Table\ref{tab:binary-trees-2},
+for the two different compilers for C++, Clang and GCC, the memory overhead is almost the same.
+This is because both of them manage memory manually.
+However, Clang has a lower time overhead than GCC. This comes from compiler optimizations,
+and Clang's optimizations are better than GCC's. In addition, the architecture of the compilers is different:
+Clang-LLVM uses a low-coupling front- and back-end architecture, while GCC uses a front- and back-end coupling
+architecture. This is due to the fact that GCC is relatively old and limited by its age.
+We can see that compile-time optimization of the compiler takes a more important role for native compiled languages.
 
-Rust, Go and Swift, which are also strongly typed, compiled MPLs, use three different memory management models. The test results for all three are highly dependent on their respective memory models; Go uses a garbage collection mechanism. Although Go is a compiled language, it has an additional runtime to support garbage collection. Compared to Java, Go uses a more conservative garbage collection strategy and does not aggressively use a space-for-time approach, resulting in decent space consumption and less optimistic runtimes for memory allocation. Rust uses an ownership mechanism, unlike C/C++, which is purely manually managed, and unlike Go's garbage collection. In terms of the underlying implementation, Rust does not actually maintain a runtime to manage space but rather determines the timing of unallocating memory at compile time through a complex arithmetic ownership algorithm. As a result, Rust's memory management is overhead-free. In fact, Rust's compiler backend uses LLVM, the same backend as the Clang-LLVM tested above, and it is also clear from the test data that Rust performs almost identically to Cpp-Clang on floating-point operations. However, due to its ownership mechanism, Rust is better at memory allocation. For Swift, the memory management mechanism is different from all of the above. Swift allocates and deallocates memory by maintaining a runtime reference count. In addition, Swift forces reference counts to be updated atomically instead of Rust's compiler management of thread safety, which results in high CPU overhead. This shows that Swift has a higher runtime overhead compared to Rust, confirming the data that Swift performs poorly compared to Rust.
+Rust, Go and Swift, which are also strongly typed, compiled MPLs,
+use three different memory management models.
+The test results for all three are highly dependent on their
+respective memory models. Go uses a garbage collection mechanism.
+Although Go is a compiled language, it has an additional runtime to support garbage collection.
+Compared to Java, Go uses a more conservative garbage collection strategy and does
+not aggressively use a space-for-time approach, resulting in decent space consumption
+and less optimistic runtimes for memory allocation in Table\ref{tab:binary-trees-1} and Table\ref{tab:binary-trees-2}.
+Rust uses an ownership mechanism,
+unlike C/C++, which is purely manually managed, and unlike Go's garbage collection.
+In terms of the underlying implementation, Rust does not actually maintain a runtime
+to manage space but rather determines the timing of unallocating memory at compile
+time through a complex arithmetic ownership algorithm. As a result, Rust's memory
+management is overhead-free. In fact, Rust's compiler backend uses LLVM, the same
+backend as the Clang-LLVM tested above, and it is also clear from the test data that
+Rust performs almost identically to Cpp-Clang in Table\ref{tab:n-body-1} and Table\ref{tab:n-body-2}.
+However,due to its ownership mechanism, Rust is better at memory allocation. For Swift,
+the memory management mechanism is different from all of the above. Swift allocates
+and deallocates memory by maintaining a runtime reference count. In addition,
+Swift forces reference counts to be updated atomically instead of Rust's compiler
+management of thread safety, which results in high CPU overhead in Table\ref{tab:binary-trees-1} and Table\ref{tab:binary-trees-2}. This shows that
+Swift has a higher runtime overhead compared to Rust, confirming the data that
+Swift performs poorly compared to Rust.
 
 \subsection{Floating-point operation test}
 
@@ -208,9 +248,11 @@ This algorithm simulates the evolution of multiple planets and checks the correc
     \end{center}
 \end{table}
 
+In Table\ref{tab:binary-trees-1} and Table\ref{tab:binary-trees-2},
 Java's time overhead is not very high and does not fall too far behind natively compiled languages. The performance bottleneck of algorithmic programs with short execution time is mainly the JVM startup time and the JIT-optimized warm-up time, and for algorithms that have already done so, Java's execution speed does not lag behind that of natively compiled languages. Java runs in two steps. In the first step, the source code is compiled into bytecode, and in the second step, the JVM interprets and executes the bytecode. In the process of interpreting and executing the bytecode, JVM will receive the runtime information of the collected code, and if it finds that some bytecode is executed more frequently, it will choose to compile this part of the bytecode and compile it into native code, which will be called directly when it is executed again. The so-called performance optimization of Java is mainly in the bytecode, while the source to bytecode stage is only a simple optimization.
 
-There is a significant performance gap between JavaScript and Python. JavaScript runs on Google's V8 engine, which executes JavaScript code much like the JVM executes bytecode, using the same JIT optimization technique. So compared to Python, which does not use JIT optimization, it has a huge performance improvement, even with Java and natively compiled languages with similar floating point performance. In fact, the speed of scripting languages is not a performance bottleneck in most application scenarios. However, in recent years, JavaScript has become the "assembly of the web", and more and more languages are being compiled into JavaScript, such as Kotlin and Dart, so more and more business logic needs to be executed in JavaScript. This makes JavaScript burdened with tedious business-related logic, and optimization of JavaScript is the trend.
+In Table\ref{tab:binary-trees-1} and Table\ref{tab:binary-trees-2},
+there is a significant performance gap between JavaScript and Python. JavaScript runs on Google's V8 engine, which executes JavaScript code much like the JVM executes bytecode, using the same JIT optimization technique. So compared to Python, which does not use JIT optimization, it has a huge performance improvement, even with Java and natively compiled languages with similar floating point performance. In fact, the speed of scripting languages is not a performance bottleneck in most application scenarios. However, in recent years, JavaScript has become the "assembly of the web", and more and more languages are being compiled into JavaScript, such as Kotlin and Dart, so more and more business logic needs to be executed in JavaScript. This makes JavaScript burdened with tedious business-related logic, and optimization of JavaScript is the trend.
 
 \subsection{Comprehensive test}
 
@@ -270,7 +312,9 @@ The Mandelbrot Set is drawn on a resolution N×N bitmap. the coordinates of the 
     \end{center}
 \end{table}
 
-For the same Dart code, it is compiled in two different ways, using JIT and AOT. As for the time and memory overhead, both have similar performance. This is caused by the compilation mechanism of Dart. In fact, the running mechanism of Dart is different from the traditional way. The traditional AOT is to compile the source code directly into the object code on the target machine, which can be called and run independently by the operating system directly. However, for Dart, whether it is AOT or JIT, only the compilation time is different, and it will eventually run on the virtual machine. In fact, when the compilation time is negligible, the time overhead of AOT and JIT is approximately equal. But this way of running has its unique disadvantage. It will significantly increase the running overhead of AOT mode, but this makes AOT compilation has strong runtime support. Because of this feature, the Dart VM can save the current runtime state, and the next time the VM is started, it can directly load the last state without restarting. This is mainly for a better development experience. The incremental compilation feature allows the runtime results to change almost in real time as the code is changed. Dart is a language for the front-end cross-platform framework Flutter. With such a mechanism, code changes can feed back to the UI in real-time, which is hard to do with other languages.
+For the same Dart code, it is compiled in two different ways,
+using JIT and AOT. As for the time and memory overhead in Table\ref{tab:mandelbrot-1} and Table\ref{tab:mandelbrot-2},
+both have similar performance. This is caused by the compilation mechanism of Dart. In fact, the running mechanism of Dart is different from the traditional way. The traditional AOT is to compile the source code directly into the object code on the target machine, which can be called and run independently by the operating system directly. However, for Dart, whether it is AOT or JIT, only the compilation time is different, and it will eventually run on the virtual machine. In fact, when the compilation time is negligible, the time overhead of AOT and JIT is approximately equal. But this way of running has its unique disadvantage. It will significantly increase the running overhead of AOT mode, but this makes AOT compilation has strong runtime support. Because of this feature, the Dart VM can save the current runtime state, and the next time the VM is started, it can directly load the last state without restarting. This is mainly for a better development experience. The incremental compilation feature allows the runtime results to change almost in real time as the code is changed. Dart is a language for the front-end cross-platform framework Flutter. With such a mechanism, code changes can feed back to the UI in real-time, which is hard to do with other languages.
 
 In industrial applications, the performance bottleneck in most scenarios is compile-related, including not only compile-time but also run-time. The impact of compilation on programming language efficiency is again multifaceted. First, the same programming language with different compilers will often have different object code and thus different runtime efficiency. This is often due to different compile-time optimizations; for example, for C++, there is a significant performance difference in the object code obtained by compiling with Clang-LLVM as opposed to compiling with GCC. Second, the same programming language can run not only in AOT, but also in JIT. For example, for Kotlin, it can be compiled not only as bytecode to run on JVM, but also programmed as JavaScript code to run on the browser, or even Kotlin Native, which can run as native code. In this way, the different compilation methods have a greater impact on efficiency.
 

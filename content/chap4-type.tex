@@ -6,12 +6,16 @@
     \label{fig:type-definition}
 \end{figure}
 
-The discussion here is based on L. Cardelli's definition of type systems.
+The discussion here is based on L. Cardelli's definition of type systems\cite{cardelli1996type}.
 This definition considers that the fundamental purpose of
 the type system is to prevent errors that occur during the
 runtime of a program, and therefore defines the type system by defining
 concepts related to errors.
-According to L. Cardelli, there are two types of errors. An error that immediately results in a fault is called a trapped error. The other will not cause fault immediately, called untrapped error. All untrapped errors and some trapped errors are collectively called forbidden errors.
+According to Figure\ref{fig:type-definition}, there are two types of errors.
+An error that immediately results in a fault is called a trapped error.
+The other will not cause fault immediately, called untrapped error.
+All untrapped errors and some trapped errors are collectively
+called forbidden errors.
 
 Good behavior is first defined by defining what is an error.
 Then it is divided into dynamic checking and static checking
@@ -67,5 +71,4 @@ The real time for error checking is still at runtime.
     \end{center}
 \end{table*}
 
-The above table gives the type system of common MPLs according to L Cardelli's type system definition. It is worth noting that most current MPLs have certain commonalities. They are often explicitly typed, strongly typed, statically typed, and well-behaved. This is inseparable from the application areas of these languages. Type signatures contain constraint information by which the behavior of variables or functions can be indirectly determined. It improves maintainability, which is exactly what programming languages for industrial applications need. Static type checking and formal proofs of type systems improve the reliability of programs and help people write less error-prone code. Also, a static type system is more conducive to performance optimization and memory allocation, and object programs can have better performance.
-
+Table\ref{tab:type} gives the type system of common MPLs according to L Cardelli's type system definition. It is worth noting that most current MPLs have certain commonalities. They are often explicitly typed, strongly typed, statically typed, and well-behaved. This is inseparable from the application areas of these languages. Type signatures contain constraint information by which the behavior of variables or functions can be indirectly determined. It improves maintainability, which is exactly what programming languages for industrial applications need. Static type checking and formal proofs of type systems improve the reliability of programs and help people write less error-prone code. Also, a static type system is more conducive to performance optimization and memory allocation, and object programs can have better performance.

@@ -42,7 +42,10 @@ the top five most popular programming languages in 2021 are Python, Java, C, C +
 Based on the above-mentioned MPL features,
 several programming languages were selected and arranged
 in order of popularity\cite{IEEETopProgrammingLanguages},
-resulting in Go, Swift, Dart, Rust and Kotlin (where Swift and Dart are equally popular). Coincidentally, these languages are also released in this order sequentially. In addition, all of these languages have similar type systems and all support AOT compilation, and although not all use garbage collection memory management, they all move away from manual memory management. These are all common features of MPLs in today's application environment.
+resulting in Go, Swift, Dart, Rust and Kotlin (where Swift and Dart are equally popular).
+Coincidentally, these languages are also released in this order sequentially, see Figure\ref{fig:timeline}.
+In addition, all of these languages have similar type systems and all support AOT compilation, and although not all use garbage collection memory management, they all move away from manual memory management.
+These are all common features of MPLs in today's application environment, as we can see from Table\ref{tab:selected-languages}.
 
 \begin{table*}[hbtp]
     \caption{Several modern programming languages}
@@ -79,7 +82,17 @@ resulting in Go, Swift, Dart, Rust and Kotlin (where Swift and Dart are equally 
 \subsection{Criteria to evaluate the design of programming languages}
 
 We think there are two main aspects that determine whether a language is useful or not.
-One aspect is its syntactic design. For complex business logic, programming languages are required to provide strong expressiveness, i.e., isolate underlying implementations that are not related to the business logic to accommodate rapid changes. Programming languages are also needed to provide solutions for checking the correctness and reliability of programs. Another aspect is performance, where programming languages are always expected to have a low memory overhead and time overhead, relying heavily on compile-time (native languages) and run-time (virtual machine languages) optimizations.
+One aspect is its syntactic design.
+For complex business logic, programming languages are required to provide
+strong expressiveness, i.e., isolate underlying implementations
+that are not related to the business logic to accommodate rapid changes.
+Programming languages are also needed to provide solutions for
+checking the correctness and reliability of programs.
+Another aspect is performance, where programming languages are
+always expected to have a low memory overhead and time overhead,
+relying heavily on compile-time (native languages) and run-time
+(virtual machine languages) optimizations.
+See Table\ref{tab:evaluate}.
 
 \begin{table*}[hb]
     \caption{Features that a well-designed programming language should have}

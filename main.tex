@@ -11,6 +11,7 @@
 \usepackage{bbding}
 \usepackage{stfloats}
 \usepackage{makecell}
+\usepackage{subcaption}
 %\usepackage{algorithm}
 %\usepackage{algorithmicx}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
@@ -40,13 +41,12 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     \maketitle
 
     \begin{abstract}
-        Modern programming languages are analyzed in terms of design through several aspects of programming language theory - programming paradigm, type system, and performance. The programming paradigm section gives a method for evaluating the degree of programming paradigm support and uses this method to evaluate the degree of programming paradigm support in modern programming languages. Thus, the connection between programming paradigms and application scenarios is obtained. The type system section analyzes the commonalities of the type systems of modern programming languages. The performance section quantitatively analyzes the performance of modern programming languages by means of benchmarking, and qualitatively analyzes the connection between the performance of programming languages and application scenarios. Finally, it is concluded that the design and practice of programming languages evolve dynamically, and the design of programming languages is closely related to their application scenarios.
+        The design of programming languages has always been an important topic. However, most attention on programming language research focuses on compiler technology. In this paper, we select multiple modern programming languages (MPLs) and systematically analyzed their designs from an application-oriented view. Concretely, we conduct the evaluation of programming paradigms, type systems, and language performances based on benchmarking tests. Through these cases combining theory and practice, the relationship between programming language design and its application scenarios is revealed, and the future developing trend of programming languages can be disclosed.
     \end{abstract}
 
     \begin{IEEEkeywords}
-        modern programming language,
         programming language design,
-        programming language,
+        modern programming language,
         programming paradigm,
         type system,
         benchmarking.
@@ -60,6 +60,18 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     \input{content/chap5-performance.tex}
     \input{content/chap6-summary.tex}
 
+    \begin{table*}[hp]
+        \begin{center}
+            \begin{tabular}{ccccc}
+                \toprule
+                Your Name    & Title               & Affiliation                                                   & Research Field                            \\
+                \midrule
+                Xudong Wang  & student             & College of Computer Science \& Technology, Qingdao University & -                         \\
+                Zhimei Zhang & assistant professor & College of Computer Science \& Technology, Qingdao University & Computer Vision, Algorithm and Complexity         \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+    \end{table*}
 
     \bibliographystyle{IEEEtran}
     \bibliography{IEEEabrv,main}

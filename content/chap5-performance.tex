@@ -1,19 +1,15 @@
 \section{Analysis of performance}
 
-To more accurately measure the performance of each language, we introduce benchmarking.
-
-In computer science, benchmarking refers to the evaluation of
+In order to reduce the interference due to other factors
+during testing, benchmark testing has been proposed.
+Benchmarking refers to the evaluation of
 the performance of an object by running a computer program or
 manipulating some specific behavior\cite{fleming1986not}.
 It is done through a series of comparative experiments with
 controlled variables usually involving several iterative rounds
 in order to draw reproducible and precise conclusions.
-In addition, it focuses on a particular procedure and
-should exclude the influence of unrelated procedures on
-the benchmark test.
-This requires that the benchmark test should have a
-clear idea of how the underlying workings work and avoid errors
-due to the uncertainty of the system's state.
+Next we will follow a benchmarking approach to quantitatively
+analyze the performance of the programming language.
 
 \subsection{Benchmarking Setup}
 
@@ -85,17 +81,20 @@ The idea is derived from Hans-J. Boehm's GC bench algorithm.
 The memory allocation capacity and garbage collection capacity are measured by repeatedly allocating and deallocating large amounts of space.
 The steps are described in Algorithm 1.
 We obtain the CPU and memory overhead results for the selected MPLs
-by taking n=21 and n=14, respectively, as shown in Table~\ref{tab:binary-trees-1} and Table~\ref{tab:binary-trees-2}.
+by taking n=21 and n=14, respectively, as shown in Table~\ref{tab:binary-trees}.
 
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/binary-trees}}
     \label{fig:binary-trees}
 \end{figure}
 
-\begin{table}[ht]
-    \caption{Memory allocation test - large input}
-    \label{tab:binary-trees-1}
-    \begin{center}
+
+\begin{table*}[htbp]
+    \centering
+    \caption{Memory allocation test}
+    \label{tab:binary-trees}
+    \begin{subtable}[h]{0.495\linewidth}
+        \centering
         \begin{tabular}{lrrrr}
             \toprule
             lang      & n  & size(B) & cpu(s)  & mem(KB) \\
@@ -113,13 +112,11 @@ by taking n=21 and n=14, respectively, as shown in Table~\ref{tab:binary-trees-1
             swift     & 21 & 714     & 63.608  & 733144  \\
             \bottomrule
         \end{tabular}
-    \end{center}
-\end{table}
-
-\begin{table}[htbp]
-    \caption{Memory allocation test - small input}
-    \label{tab:binary-trees-2}
-    \begin{center}
+        \caption{Memory allocation test - large input}
+        \label{tab:binary-trees-1}
+    \end{subtable}
+    \begin{subtable}[h]{0.495\linewidth}
+        \centering
         \begin{tabular}{lrrrr}
             \toprule
             lang      & n  & size(B) & cpu(s) & mem(KB) \\
@@ -137,10 +134,12 @@ by taking n=21 and n=14, respectively, as shown in Table~\ref{tab:binary-trees-1
             swift     & 14 & 714     & 0.299  & 17616   \\
             \bottomrule
         \end{tabular}
-    \end{center}
-\end{table}
+        \caption{Memory allocation test - small input}
+        \label{tab:binary-trees-2}
+    \end{subtable}
+\end{table*}
 
-As we can see from the Table\ref{tab:binary-trees-1} and Table~\ref{tab:binary-trees-2},
+As we can see from the Table\ref{tab:binary-trees},
 Java has the best memory allocation and management
 speed among these programming languages.
 However, Java's memory consumption is relatively the largest among these languages.
@@ -154,7 +153,7 @@ It has better response time than Parallel, but consumes more memory at the same 
 This is in line with the data in the table that Kotlin's time overhead is slightly higher
 than Java's and memory overhead is slightly lower.
 
-In Table~\ref{tab:binary-trees-1} and Table~\ref{tab:binary-trees-2},
+In Table~\ref{tab:binary-trees},
 for the two different compilers for C++, Clang and GCC, the memory overhead is almost the same.
 This is because both of them manage memory manually.
 However, Clang has a lower time overhead than GCC. This comes from compiler optimizations,
@@ -171,7 +170,7 @@ Go uses a garbage collector.
 Although Go is a natively compiled language, there is an additional runtime to support garbage collection.
 Compared to Java, Go uses a more conservative garbage collection strategy and does
 not aggressively use a space-for-time approach, resulting in decent space consumption
-and less optimistic runtimes for memory allocation in Table~\ref{tab:binary-trees-1} and Table~\ref{tab:binary-trees-2}.
+and less optimistic runtimes for memory allocation in Table~\ref{tab:binary-trees}.
 Rust uses an ownership mechanism,
 unlike C/C++, which is purely manually managed, and unlike Go's garbage collection.
 In terms of the underlying implementation, Rust does not actually maintain a runtime
@@ -179,12 +178,12 @@ to manage space but rather determines the timing of unallocating memory at compi
 time through a complex arithmetic ownership algorithm. As a result, Rust's memory
 management is overhead-free. In fact, Rust's compiler backend uses LLVM, the same
 backend as the Clang-LLVM tested above, and it is also clear from the test data that
-Rust performs almost identically to Cpp-Clang in Table~\ref{tab:n-body-1} and Table~\ref{tab:n-body-2}.
+Rust performs almost identically to Cpp-Clang in Table~\ref{tab:n-body}.
 However,due to its ownership mechanism, Rust is better at memory allocation. For Swift,
 the memory management mechanism is different from all of the above. Swift allocates
 and deallocates memory by maintaining a runtime reference count. In addition,
 Swift forces reference counts to be updated atomically instead of Rust's compiler
-management of thread safety, which results in high CPU overhead in Table~\ref{tab:binary-trees-1} and Table~\ref{tab:binary-trees-2}. This shows that
+management of thread safety, which results in high CPU overhead in Table~\ref{tab:binary-trees}. This shows that
 Swift has a higher runtime overhead compared to Rust, confirming the data that
 Swift performs poorly compared to Rust.
 
@@ -196,17 +195,19 @@ This algorithm simulates the evolution of multiple planets and checks the correc
 The steps are described in Algorithm 2.
 We obtain the CPU and memory overhead results
 for the selected MPLs by taking n=5e7 and n=5e6, respectively,
-as shown in Table~\ref{tab:n-body-1} and Table~\ref{tab:n-body-2}.
+as shown in Table~\ref{tab:n-body}.
 
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/n-body}}
     \label{fig:n-body}
 \end{figure}
 
-\begin{table}[ht]
-    \caption{Floating-point operation test - large input}
-    \label{tab:n-body-1}
-    \begin{center}
+\begin{table*}[htbp]
+    \centering
+    \caption{Memory allocation test}
+    \label{tab:n-body}
+    \begin{subtable}[h]{0.495\linewidth}
+        \centering
         \begin{tabular}{lrrrr}
             \toprule
             lang      & n        & size(B) & cpu(s)  & mem(KB) \\
@@ -224,14 +225,11 @@ as shown in Table~\ref{tab:n-body-1} and Table~\ref{tab:n-body-2}.
             swift     & 50000000 & 1192    & 9.585   & 6308    \\
             \bottomrule
         \end{tabular}
-    \end{center}
-\end{table}
-
-
-\begin{table}[htbp]
-    \caption{Floating-point operation test - small input}
-    \label{tab:n-body-2}
-    \begin{center}
+        \caption{Floating-point operation test - large input}
+        \label{tab:n-body-1}
+    \end{subtable}
+    \begin{subtable}[h]{0.495\linewidth}
+        \centering
         \begin{tabular}{lrrrr}
             \toprule
             lang      & n       & size(B) & cpu(s) & mem(KB) \\
@@ -249,32 +247,38 @@ as shown in Table~\ref{tab:n-body-1} and Table~\ref{tab:n-body-2}.
             swift     & 5000000 & 1192    & 0.976  & 6308    \\
             \bottomrule
         \end{tabular}
-    \end{center}
-\end{table}
+        \caption{Floating-point operation test - small input}
+        \label{tab:n-body-2}
+    \end{subtable}
+\end{table*}
 
-In Table~\ref{tab:binary-trees-1} and Table~\ref{tab:binary-trees-2},
+
+In Table~\ref{tab:binary-trees},
 Java's time overhead is not very high and does not fall too far behind natively compiled languages. The performance bottleneck of algorithmic programs with short execution time is mainly the JVM startup time and the JIT-optimized warm-up time, and for algorithms that have already done so, Java's execution speed does not lag behind that of natively compiled languages. Java runs in two steps. In the first step, the source code is compiled into bytecode, and in the second step, the JVM interprets and executes the bytecode. In the process of interpreting and executing the bytecode, JVM will receive the runtime information of the collected code, and if it finds that some bytecode is executed more frequently, it will choose to compile this part of the bytecode and compile it into native code, which will be called directly when it is executed again. The so-called performance optimization of Java is mainly in the bytecode, while the source to bytecode stage is only a simple optimization.
 
-In Table~\ref{tab:binary-trees-1} and Table~\ref{tab:binary-trees-2},
+In Table~\ref{tab:binary-trees},
 there is a significant performance gap between JavaScript and Python. JavaScript runs on Google's V8 engine, which executes JavaScript code much like the JVM executes bytecode, using the same JIT optimization technique. So compared to Python, which does not use JIT optimization, it has a huge performance improvement, even with Java and natively compiled languages with similar floating point performance. In fact, the speed of scripting languages is not a performance bottleneck in most application scenarios. However, in recent years, JavaScript has become the "assembly of the web", and more and more languages are being compiled into JavaScript, such as Kotlin and Dart, so more and more business logic needs to be executed in JavaScript. This makes JavaScript burdened with tedious business-related logic, and optimization of JavaScript is the trend.
 
 \subsection{Comprehensive test}
 
-The Mandelbrot Set is drawn on a resolution N×N bitmap. the coordinates of the image on the complex axis are [-1.5-i,0.5+i]. For each pixel, a certain number of iterations are performed to determine the gray level of the current pixel. The output in PBF format is performed byte by byte. The correctness is checked by comparing it with the standard output. The performance bottleneck of this test is in floating point operations, memory allocation, and IO.
+The Mandelbrot Set is drawn on a resolution N×N image and the coordinates of the image on the complex axis are [-1.5-i,0.5+i]. For each pixel, a certain number of iterations are performed to determine the gray level of the current pixel. The output in PBF format is performed byte by byte. The correctness is checked by comparing it with the standard output. The performance bottleneck of this test is in floating point operations, memory allocation, and IO.
 The steps are described in Algorithm 3.
 We obtain the CPU and memory overhead results
 for the selected MPLs by taking n=16000 and n=4000, respectively,
-as shown in Table~\ref{tab:mandelbrot-1} and Table~\ref{tab:mandelbrot-2}.
+as shown in Table~\ref{tab:mandelbrot}.
 
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/mandelbrot}}
     \label{fig:mandelbrot}
 \end{figure}
 
-\begin{table}[ht]
-    \caption{Comprehensive test - large input}
-    \label{tab:mandelbrot-1}
-    \begin{center}
+
+\begin{table*}[htbp]
+    \centering
+    \caption{Memory allocation test}
+    \label{tab:mandelbrot}
+    \begin{subtable}[h]{0.495\linewidth}
+        \centering
         \begin{tabular}{lrrrr}
             \toprule
             lang      & n     & size(B) & cpu(s)  & mem(KB) \\
@@ -292,14 +296,11 @@ as shown in Table~\ref{tab:mandelbrot-1} and Table~\ref{tab:mandelbrot-2}.
             swift     & 16000 & 394     & 26.277  & 6200    \\
             \bottomrule
         \end{tabular}
-    \end{center}
-\end{table}
-
-
-\begin{table}[htbp]
-    \caption{Comprehensive test - small input}
-    \label{tab:mandelbrot-2}
-    \begin{center}
+        \caption{Comprehensive test - large input}
+        \label{tab:mandelbrot-1}
+    \end{subtable}
+    \begin{subtable}[h]{0.495\linewidth}
+        \centering
         \begin{tabular}{lrrrr}
             \toprule
             lang      & n    & size(B) & cpu(s) & mem(KB) \\
@@ -317,11 +318,13 @@ as shown in Table~\ref{tab:mandelbrot-1} and Table~\ref{tab:mandelbrot-2}.
             swift     & 4000 & 394     & 1.661  & 6240    \\
             \bottomrule
         \end{tabular}
-    \end{center}
-\end{table}
+        \caption{Comprehensive test - small input}
+        \label{tab:mandelbrot-2}
+    \end{subtable}
+\end{table*}
 
 For the same Dart code, it is compiled in two different ways,
-using JIT and AOT. As for the time and memory overhead in Table~\ref{tab:mandelbrot-1} and Table~\ref{tab:mandelbrot-2},
+using JIT and AOT. As for the time and memory overhead in Table~\ref{tab:mandelbrot},
 both have similar performance. This is caused by the compilation mechanism of Dart. In fact, the running mechanism of Dart is different from the traditional way. The traditional AOT is to compile the source code directly into the object code on the target machine, which can be called and run independently by the operating system directly. However, for Dart, whether it is AOT or JIT, only the compilation time is different, and it will eventually run on the virtual machine. In fact, when the compilation time is negligible, the time overhead of AOT and JIT is approximately equal. But this way of running has its unique disadvantage. It will significantly increase the running overhead of AOT mode, but this makes AOT compilation has strong runtime support. Because of this feature, the Dart VM can save the current runtime state, and the next time the VM is started, it can directly load the last state without restarting. This is mainly for a better development experience. The incremental compilation feature allows the runtime results to change almost in real time as the code is changed. Dart is a language for the front-end cross-platform framework Flutter. With such a mechanism, code changes can feed back to the UI in real-time, which is hard to do with other languages.
 
 In industrial applications, the performance bottleneck in most scenarios is compile-related, including not only compile-time but also run-time. The impact of compilation on programming language efficiency is again multifaceted. First, the same programming language with different compilers will often have different object code and thus different runtime efficiency. This is often due to different compile-time optimizations; for example, for C++, there is a significant performance difference in the object code obtained by compiling with Clang-LLVM as opposed to compiling with GCC. Second, the same programming language can run not only in AOT, but also in JIT. For example, for Kotlin, it can be compiled not only as bytecode to run on JVM, but also programmed as JavaScript code to run on the browser, or even Kotlin Native, which can run as native code. In this way, the different compilation methods have a greater impact on efficiency.

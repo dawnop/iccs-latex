@@ -1,18 +1,15 @@
 \section{Analysis of programming paradigms}
 
-We analyzed the programming paradigm of MPLs.
-By analyzing the degree of support of different MPLs
-for programming paradigms and the application scenarios of
-different MPLs, we try to find out the connection between
-the degree of support of programming paradigms and the
-application scenarios.
+%By analyzing the degree of support of the nine MPLs
+%for programming paradigms and the application scenarios of
+%different MPLs, we try to find out the connection between
+%the degree of support of programming paradigms and the
+%application scenarios.
 
-
-We know that programming is about solving problems,
+Extensive research has shown that programming is about solving problems,
 and that problems can be solved from a variety of perspectives
 and ideas, of which the universal and proven patterns are
 summarized as paradigms.
-
 Functional Programming (FP) and Object Oriented Programming (OOP)
 are the two most common, and at the same time the most important paradigms
 in modern programming languages.
@@ -21,14 +18,9 @@ programming paradigms below.
 
 \subsection{Languages, paradigms, and concepts}
 
-\begin{figure}[htbp]
-    \centerline{\includegraphics[scale=0.8]{figures/concept}}
-    \caption{Languages, paradigms, and concepts}
-    \label{fig:concept}
-\end{figure}
 
 
-\begin{table*}[htbp]
+\begin{table*}[hb]
     \caption{Several concepts of FP and OOP}
     \label{tab:concept}
     \begin{center}
@@ -72,7 +64,7 @@ programming paradigms below.
     \end{center}
 \end{table*}
 
-\begin{table*}[hb]
+\begin{table*}[ht]
     \caption{Degree of support for FP concept}
     \label{tab:fp}
     \begin{center}
@@ -96,13 +88,19 @@ programming paradigms below.
     \end{center}
 \end{table*}
 
-Figure~\ref{fig:concept} shows the relationship between languages,
-paradigms, and concepts.
-Each paradigm contains a core set of concepts,
-and each language also realizes one or more paradigms.
+Each language also realizes one or more paradigms,
+and each paradigm contains a core set of concepts,
+as we can see in Table~\ref{fig:concept}.
 FP and OOP are programming paradigms that are commonly
-available in MPLs.
+available in MPLs, so the rest of our discussion is based on FP and OOP\@.
 Table~\ref{tab:concept} shows several concepts in FP and OOP supported by MPLs, and the meaning of a certain concept.
+
+\begin{figure}[htbp]
+    \centerline{\includegraphics[scale=0.8]{figures/concept}}
+    \caption{Languages, paradigms, and concepts}
+    \label{fig:concept}
+\end{figure}
+
 
 We have adopted a more application-oriented approach to concept organization.
 It will tend to choose concepts defined in a particular programming
@@ -200,14 +198,32 @@ In order to more accurately distinguish the degree of OOP concept support for ea
 
 \subsection{Programming Paradigms and Applications}
 
+We try to find the relationship between the degree of programming language support for
+programming paradigms and the application scenarios of the programming language.
+By combining Table~\ref{tab:fp} and Table~\ref{tab:oop} and the results of their analysis, we obtain Figure~\ref{fig:paradigm}.
+The x-axis and y-axis in Figure~\ref{fig:paradigm} represent respectively
+the degree of OOP and FP support of the programming language.
+The larger its coordinate on the x-axis, the better its support for OOP.
+Similarly, the larger its coordinate on the y-axis, the better its support for FP.
+Based on our analysis of the support level of programming paradigm above,
+we partitioned the support level of FP into three levels and the support level of OOP into two levels.
+Programming languages that have the same level, we consider that they have similar programming paradigms.
+What is clear is that Kotlin and Rust have the best level of FP and OOP support.
+Meanwhile, C++ and Java have the worst support.
+We can see that, in general, the later the release of a programming language,
+the better its support for FP and OOP.
+
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/paradigm}}
     \caption{Degree of programming paradigm concept support}
     \label{fig:paradigm}
 \end{figure}
 
-The above discussion leads to Figure~\ref{fig:paradigm}, which roughly depicts the degree of support for FP and OOP concepts in different programming languages.
-For a given programming language, the closer it is to FP/OOP in Figure~\ref{fig:paradigm}, the better it supports FP/OOP. In fact, the paradigm of a programming language is very closely related to its application scenario, whether it is for a single application area or for multiple application areas.
+The degree to which a programming language supports a programming paradigm is closely related
+to the application scenario of the programming language.
+Next, we will select a few representative programming languages from Figure~\ref{fig:paradigm} and analyze the
+relationship between their programming paradigms and application scenarios.
+
 
 A typical example is Dart. Its main application scenario is the Web front-end, and it is often used as a support language for the GUI framework Flutter. It is obvious that most of the GUI frameworks we use have a complex inheritance structure. This is because, for GUIs, most of its application scenarios satisfy the Liskov Substitution Principle, i.e., the child type can completely replace the parent type. This is a sufficient condition for using inheritance. Therefore, Dart only provides object-oriented concepts based on inheritance.
 

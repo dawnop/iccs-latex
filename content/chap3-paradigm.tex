@@ -102,18 +102,18 @@ Table~\ref{tab:concept} shows several concepts in FP and OOP supported by MPLs, 
 \end{figure}
 
 
-We have adopted a more application-oriented approach to concept organization.
-It will tend to choose concepts defined in a particular programming
+We have adopted a more application-oriented approach to organize these concepts.
+Because we tend to choose concepts defined in a particular programming
 language rather than concepts from programming paradigm theory.
-For example, for the functional concept of nested and anonymous functions,
-they are implemented as lambda expressions in many programming languages.
-As another example, most of the currently popular programming languages
-support combinations in the object-oriented concept.
-When designing programming languages, combinations are simply a way of
-arranging data and do not belong to any paradigm.
+For example, "nested functions" and "anonymous functions" are two concepts in FP,
+but in programming language implementation, "lambda expressions" supersede these two concepts.
+As another example, most currently popular programming languages support "combination",
+which is always an OOP concept.
+When designing programming languages, the combination is simply a way of
+arranging data and does not belong to any paradigm.
 Even languages like the much older C provide structure combinations and
 function combinations.
-Therefore, combinations are not included in the analysis.
+Therefore, the combination is not included in our analysis.
 
 \subsection{Functional programming}
 
@@ -127,35 +127,31 @@ programming languages are becoming more and more supportive
 of functional concepts.
 Table~\ref{tab:fp} gives the support level of the selected 9 MPLs for the concepts
 of FP mentioned in Table~\ref{tab:concept}.
-The right/wrong signs indicate that the programming language has
-supported/not supported the concept since the beginning,
-and if the programming language has supported a concept during its development,
+The right signs indicate that the programming language has
+supported the concept since the language appears.
+On the contrary, the wrong signs indicate that the programming language has
+not supported the concept even now.
+And if the programming language has supported the concept during its development,
 the version that first supported the concept is indicated.
 
 
 For programming languages released in the 1980s and 1990s,
-the support for functional concepts was not good when they
-were first created.
+their support for functional concepts was not good when they first appeared.
 This is especially true for Java and C++.
-From the original syntax, one did not design them with FP in mind.
-And for JavaScript and Python, they are a bit better in this regard.
-Although they inherently support some functional concepts,
-they are still missing some advanced functional concepts.
-As for the programming languages released around 2010,
-they all support the basic functional concept.
-In particular, Rust and Kotlin additionally support the concept
-of "statements as expressions", a milestone in the development
-of MPL paradigm convergence.
-The concept of "statements as expressions"
-is more common in functional languages and provides semantic
-unification of expressions and statements.
-However, this concept is not supported in most programming languages with paradigm convergence.
-As programming languages continue to evolve, Kotlin and Rust
-are supporting this concept with paradigm convergence.
-Thus Kotlin and Rust can be considered as having a higher
-level of support for FP concepts.
+From their original syntax, we can see that there is no functional concept in them.
+This is because these programming languages were not designed with FP in mind.
+Then, JavaScript and Python are a bit better in FP concept support.
+Although they inherently support some basic functional concepts, they are missing some advanced ones.
+As for the programming languages released around 2010, they all support the core functional concept.
+In particular, Rust and Kotlin additionally support the concept of "statements as expressions",
+a milestone in the development of MPL paradigm convergence.
+The concept of "statements as expressions" provides semantic unification of expressions and statements,
+and is more common in FP languages(compared to OOP).
+As programming languages continue to evolve, some programming language with paradigm convergence,
+like Kotlin and Rust, has supported this concept.
+Thus Kotlin and Rust can be considered as having a higher level of support for FP concepts.
 
-\subsection{Object oriented orogramming}
+\subsection{Object oriented programming}
 The most important feature of OOP is its emphasis on reuse. Back in the 1960s, software maintenance became increasingly difficult due to the increasing complexity of hardware and software. OOP solves this problem by emphasizing reusability. In the practice of OOP, one maps real problems into entities and their relationships, rather than being concerned with the process of dealing with the problem.
 
 %The most important feature of OOP is its emphasis on reuse. Back in the 1960s, software maintenance became increasingly difficult due to the increasing complexity of hardware and software. OOP solves this problem by emphasizing reusability. In the practice of OOP, one maps real problems into entities and their relationships, rather than being concerned with the process of dealing with the problem. After the birth of object-oriented languages, there was an urgent need to map from problems to entities and relationships in a modeling way, at which point UML was born. It is a set of standardized modeling languages for visualization and has greatly contributed to the development of object-oriented methodologies. Since then the practice of OOP has always emphasized design before implementation.
@@ -196,7 +192,7 @@ In order to more accurately distinguish the degree of OOP concept support for ea
     \end{center}
 \end{table*}
 
-\subsection{Programming Paradigms and Applications}
+\subsection{Programming paradigms and their application scenarios}
 
 We try to find the relationship between the degree of programming language support for
 programming paradigms and the application scenarios of the programming language.

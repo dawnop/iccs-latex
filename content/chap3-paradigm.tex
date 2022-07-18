@@ -6,7 +6,7 @@
 %the degree of support of programming paradigms and the
 %application scenarios.
 
-Extensive research has shown that programming is about solving problems,
+Programming is about solving problems,
 and that problems can be solved from a variety of perspectives
 and ideas, of which the universal and proven patterns are
 summarized as paradigms.
@@ -152,22 +152,42 @@ like Kotlin and Rust, has supported this concept.
 Thus Kotlin and Rust can be considered as having a higher level of support for FP concepts.
 
 \subsection{Object oriented programming}
-The most important feature of OOP is its emphasis on reuse. Back in the 1960s, software maintenance became increasingly difficult due to the increasing complexity of hardware and software. OOP solves this problem by emphasizing reusability. In the practice of OOP, one maps real problems into entities and their relationships, rather than being concerned with the process of dealing with the problem.
+The most important feature of OOP is its emphasis on code reuse.
+Back in the 1960s, software maintenance became increasingly difficult due to the increasing
+complexity of hardware and software, and OOP solves this problem by emphasizing reusability.
+In the practice of OOP, people tend to map real problems into entities and their relationships,
+rather than concern about the procedure of dealing with problems.
 
 %The most important feature of OOP is its emphasis on reuse. Back in the 1960s, software maintenance became increasingly difficult due to the increasing complexity of hardware and software. OOP solves this problem by emphasizing reusability. In the practice of OOP, one maps real problems into entities and their relationships, rather than being concerned with the process of dealing with the problem. After the birth of object-oriented languages, there was an urgent need to map from problems to entities and relationships in a modeling way, at which point UML was born. It is a set of standardized modeling languages for visualization and has greatly contributed to the development of object-oriented methodologies. Since then the practice of OOP has always emphasized design before implementation.
 
-For the core concepts of OOP, there is not much difference in the level of support of MPLs, see Table~\ref{tab:oop}.
+For the core concepts of OOP, there is not much difference in the level of support of MPLs.
 Table~\ref{tab:oop} shows the degree of support of the selected 9 MPLs for the conception of the OOP
 mentioned in Table~\ref{tab:concept}.
-The meaning of the right/wrong signs in the table is the same as in Table~\ref{tab:fp}.
+The meaning of the right and wrong signs in the table is the same as in Table~\ref{tab:fp}.
 
-There are three ways to realize reuse: inheritance, combination, and delegation.
-In addition, more and more programming languages are realizing object-oriented
+There are three ways to realize reuse in OOP: inheritance, combination, and delegation.
+But more and more programming languages are realizing object-oriented
 features by supporting combinations and delegates, while mere
 inheritance has proven to be bad practice\cite{gamma1995design}.
-Therefore, the concept of classes and inheritance is abandoned in Go and Rust, and object orientation is realized through trait. Compared to class-based object-oriented, trait-based object-oriented has a looser coupling and more flexible realization. However, most MPLs support both trait and class for different granularity of control.
+In practice, the concept of class and inheritance has been abandoned in Go and Rust,
+and they realized object orientation through trait.
+Compared to class-based object-oriented, trait-based object-oriented has a looser coupling
+and a more flexible realization method.
+In practice, most MPLs support both trait and class for different granularity of control.
 
-In order to more accurately distinguish the degree of OOP concept support for each MPL, some concepts that are not commonly used are introduced here. An example is "everything is object". According to the definition of OOP, it should have been the most basic concept in OOP. In fact, however, early programming languages tended to have a large number of imperative features, i.e., not all elements were treated as objects. For example, there are still primitive data types in Java, which are not objects, so we cannot call methods of these types as if they were objects. Perhaps there are many performance positives of primitive data types, but from a semantic consistency perspective, primitive data types have negative effects. Therefore, languages with the concept of "everything is object" are considered to have a higher level of OOP support.
+To more accurately distinguish the degree of OOP concept support for each MPL,
+we introduce some concepts that are not common used.
+An example is "everything is object".
+According to the definition of OOP, it should have been a fundamental concept in OOP\@.
+However, early programming languages have huge imperative features, i.e.,
+not all elements in programming languages are objects.
+For example, there are still primitive data types in Java, which are not objects,
+and we cannot call methods of these like objects.
+There are many performance positives of primitive data types,
+but from a semantic consistency perspective, primitive data types have negatives.
+Therefore, languages with the concept of "everything is object" are
+considered to have a higher level of OOP support.
+
 
 \begin{table*}[htbp]
     \caption{Degree of support for OOP concept}
@@ -194,20 +214,25 @@ In order to more accurately distinguish the degree of OOP concept support for ea
 
 \subsection{Programming paradigms and their application scenarios}
 
-We try to find the relationship between the degree of programming language support for
-programming paradigms and the application scenarios of the programming language.
-By combining Table~\ref{tab:fp} and Table~\ref{tab:oop} and the results of their analysis, we obtain Figure~\ref{fig:paradigm}.
+After the discussion above, we give a method for judging the degree of
+programming language support for programming paradigms.
+And we adopt this method to analyze the relationship between
+the support degree of programming language to programming paradigm
+and the application scenarios of programming language.
+
+By combining the results of Table~\ref{tab:fp} and Table~\ref{tab:oop},
+we analyze and obtain Figure~\ref{fig:paradigm}.
 The x-axis and y-axis in Figure~\ref{fig:paradigm} represent respectively
 the degree of OOP and FP support of the programming language.
-The larger its coordinate on the x-axis, the better its support for OOP.
-Similarly, the larger its coordinate on the y-axis, the better its support for FP.
+The larger its coordinate on the x-axis, the better its support for OOP\@.
+Similarly, the larger its coordinate on the y-axis, the better its support for FP\@.
 Based on our analysis of the support level of programming paradigm above,
 we partitioned the support level of FP into three levels and the support level of OOP into two levels.
 Programming languages that have the same level, we consider that they have similar programming paradigms.
-What is clear is that Kotlin and Rust have the best level of FP and OOP support.
+What can be clearly seen in Figure~\ref{fig:paradigm} is that Kotlin and Rust have the best level of FP and OOP support.
 Meanwhile, C++ and Java have the worst support.
-We can see that, in general, the later the release of a programming language,
-the better its support for FP and OOP.
+In general, the later the release of a programming language,
+the better its support for FP and OOP\@.
 
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/paradigm}}
@@ -215,14 +240,31 @@ the better its support for FP and OOP.
     \label{fig:paradigm}
 \end{figure}
 
-The degree to which a programming language supports a programming paradigm is closely related
-to the application scenario of the programming language.
 Next, we will select a few representative programming languages from Figure~\ref{fig:paradigm} and analyze the
 relationship between their programming paradigms and application scenarios.
 
+A typical example is Dart.
+Its main application scenario is the Web front-end,
+and it is often used as a support language for the GUI framework Flutter.
+It is obvious that most of the GUI frameworks we use have a complex inheritance structure.
+This is because, for GUIs, most of its application scenarios satisfy the Liskov Substitution Principle,i.e.,
+the child type can completely replace the parent type.
+Liskov Substitution Principle is a sufficient condition for using inheritance.
+Therefore, Dart only provides object-oriented concepts based on inheritance.
 
-A typical example is Dart. Its main application scenario is the Web front-end, and it is often used as a support language for the GUI framework Flutter. It is obvious that most of the GUI frameworks we use have a complex inheritance structure. This is because, for GUIs, most of its application scenarios satisfy the Liskov Substitution Principle, i.e., the child type can completely replace the parent type. This is a sufficient condition for using inheritance. Therefore, Dart only provides object-oriented concepts based on inheritance.
+The next example is Java, which has weak support for both FP and OOP concepts.
+In the early years, Java was used for Enterprise development, an application scenario related to computer native.
+Later it was used for Web servers, a scenario that required high abstraction of business logic,
+so Java supports more concepts of FP\@.
+However, due to the grammar design, Java can not have better support for FP (compared to other later languages).
 
-The next example is Java, which has weak support for both FP and OOP concepts. In the early years, Java was used for Enterprise development. Later it was used for Web servers, a scenario that required high abstraction of business logic, so Java added the additional concept of FP. However, due to the design of the language itself, the level of support is not high.
+The last example is Kotlin, which has better support for both FP and OOP\@.
+Kotlin was born for Android development.
+In order to solve the previous problem that Java was too cumbersome to develop Android applications,
+Kotlin was designed to add a lot of FP and OOP concepts for the Android application scenario.
+Not only does it support traditional FP and OOP concepts, but it also makes syntax-level optimizations for
+these concepts, such as the FP syntactic sugar "trailing lambda" and the OOP delegate syntactic sugar "by".
+These useful features in turn allow Kotlin to be used in other scenarios, such as server front-ends and back-ends.
 
-Another example is Kotlin, which has better support for both FP and OOP. Its initial application scenario is Android. In order to solve the previous problem that Java was too cumbersome to develop Android applications, Kotlin was designed to add a lot of FP and OOP concepts for the Android application scenario. Not only does it support traditional FP and OOP concepts, but it also makes syntax-level optimizations for these concepts, such as the FP syntactic sugar "trailing lambda" and the OOP delegate syntactic sugar "by". These useful features in turn allow Kotlin to be used in other scenarios, such as server front-ends and back-ends.
+A positive correlation was found between the degree of programming language support for
+programming paradigms and the application scenarios of the programming language.

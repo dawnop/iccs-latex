@@ -5,9 +5,9 @@ during testing, benchmark testing has been proposed.
 Benchmarking refers to the evaluation of
 the performance of an object by running a computer program or
 manipulating some specific behavior\cite{fleming1986not}.
-It is done through a series of comparative experiments with
-controlled variables usually involving several iterative rounds
-in order to draw reproducible and precise conclusions.
+It runs through a series of comparative experiments with controlled variables,
+and it usually involves several iterative rounds in order to draw
+reproducible and precise conclusions.
 Next we will follow a benchmarking approach to quantitatively
 analyze the performance of the programming language.
 
@@ -26,18 +26,13 @@ analyze the performance of the programming language.
 %    \end{tabular}
 %\end{table}
 
-This test uses Python scripts to perform coarse-grained
-batch testing uniformly and uses built-in process tools
-to invoke Linux system commands without relying on
-third-party libraries, which has high testing efficiency
-and is, therefore, suitable for large amounts of data.
-Each test program was executed six times, and the results
-were averaged to avoid bias.
-Each benchmark test was
-executed with larger and smaller scale inputs.
+This benchmarking uses Python scripts to perform coarse-grained batch testing
+uniformly and uses the built-in process tools of Python to invoke Linux system
+commands without relying on third-party libraries, which have high testing efficiency.
+Each benchmarking runs six times with larger and smaller scale inputs,
+and we process the results in some method respectively to avoid bias.
 We choose the host with a 4-core 3.0GHz CPU, 16GB RAM, CentOS 8.2.
-For the compiler environment of the programming
-language, see Table\ref{tab:version}.
+For the compiler environment of the programming language, see Table\ref{tab:version}.
 
 \begin{table}[htbp]
     \caption{Language versions and dependencies}
@@ -61,27 +56,40 @@ language, see Table\ref{tab:version}.
     \end{center}
 \end{table}
 
-For the same language with different compilers or compilation methods, compare their differences (e.g. C++, Dart). For the remaining languages, we classify them according to the programming language type system. Because for multiple languages with the same type system and compilation method, there should be overlap in their scope of application in practice, the comparative analysis.
+For the same language with different compilers or compilation methods (e.g.\ C++, Dart), compare their differences.
+For the remaining languages, we classify them according to the type systems we discussed above.
+Languages with the same type system and compilation method should have similar application scenarios,
+so we should make a comparative analysis.
 
 The benchmarking metrics for computer languages come from one of the
-more popular cross-language benchmarking suites available -
+most popular cross-language benchmarking suites -
 the Computer Language Benchmarking Game\cite{gouy2017computer}.
-For each language, there are four metrics.
-
+For each language, there are four metrics, and we will use them
+in Table~\ref{tab:binary-trees}, Table~\ref{tab:n-body}, and Table~\ref{tab:mandelbrot} soon.
+There are the details of these four metrics below.
 
 \begin{enumerate}
-    \item Compiler. marked after the programming language, if not marked then the official compiler is used.
-    \item Size. The size of the source code after gzip compression. For the same algorithm, the smaller the amount of code used by a programming language, the more syntactically expressive the language is, in general.
-    \item CPU. The time required to run the algorithm. Takes the minimum value of multiple runs. Includes startup time.
-    \item Memory. The peak space consumption to run the algorithm. Takes the maximum of multiple runs.
+    \item Compiler.
+    Marked after the programming language.
+    If not marked, we use the official compiler.
+    \item Size.
+    The size of the source code after gzip compression.
+    The less code a programming language uses, the more expressive the language is for the same algorithm, in general.
+    \item CPU. The time required to run the algorithm.
+    Takes the minimum value of multiple runs.
+    Includes startup time.
+    \item Memory.
+    The peak space consumption to run the algorithm.
+    Takes the maximum of multiple runs.
 \end{enumerate}
 
 \subsection{Memory allocation test}
-The idea is derived from Hans-J. Boehm's GC bench algorithm.
-The memory allocation capacity and garbage collection capacity are measured by repeatedly allocating and deallocating large amounts of space.
+This algorithm is derived from Hans-J. Boehm's GC bench.
+The memory allocation capacity and garbage collection capacity of a programming languages
+are measured by repeatedly allocating and deallocating large amounts of space.
 The steps are described in Algorithm 1.
 We obtain the CPU and memory overhead results for the selected MPLs
-by taking n=21 and n=14, respectively, as shown in Table~\ref{tab:binary-trees}.
+by taking n=21 and n=14 respectively, as shown in Table~\ref{tab:binary-trees}.
 
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/binary-trees}}
@@ -146,52 +154,57 @@ However, Java's memory consumption is relatively the largest among these languag
 This is due to the unique memory model of the JVM, which divides the heap area into
 different generations and uses different garbage collection algorithms for each generation.
 The advantage of this is obvious, it can greatly increase the efficiency of garbage
-collection. But at the same time, it takes up more memory than is actually needed for the division.
+collection.
+But at the same time, it takes up more memory than the storage of objects actually needs.
 Since Kotlin and Java are both based on the JVM, they have similar performance figures.
-Kotlin is based on Java8, while Java is based on Java17. From Java9 onwards, the default JVM GC is G1.
-It has better response time than Parallel, but consumes more memory at the same time.
-This is in line with the data in the table that Kotlin's time overhead is slightly higher
-than Java's and memory overhead is slightly lower.
+Kotlin is based on Java8, while Java is based on Java17.
+From Java9 onwards, the default JVM GC is G1.
+It has a better response time than Parallel in Java8, but consumes more memory.
+The performance impact of the GC can be seen from the Table\ref{tab:binary-trees}.
+Kotlin's time overhead is slightly higher than Java's, and memory overhead is slightly lower.
 
 In Table~\ref{tab:binary-trees},
 for the two different compilers for C++, Clang and GCC, the memory overhead is almost the same.
-This is because both of them manage memory manually.
-However, Clang has a lower time overhead than GCC. This comes from compiler optimizations,
-and Clang's optimizations are better than GCC's. In addition, the architecture of the compilers is different:
+This is largely because both of them manage memory manually.
+However, Clang has a lower time overhead than GCC. These results are likely to be related to their
+different compiler architecture and optimization.
+In fact, the architecture of the two compilers is different:
 Clang-LLVM uses a low-coupling front- and back-end architecture, while GCC uses a front- and back-end coupling
 architecture.
-We can see that compile-time optimization of the compiler takes a more important role for native compiled languages.
+We can see that compile-time optimization of the compiler takes a significant role for natively compiled languages.
 
-Rust, Go and Swift, which are also strongly typed, natively compiled MPLs,
+Rust, Go and Swift, which are also strongly checked, natively compiled MPLs,
 use three different memory management models.
-The test results for all three are highly dependent on their
+The test results in Table~\ref{tab:binary-trees} for the three are highly dependent on their
 respective memory models.
 Go uses a garbage collector.
 Although Go is a natively compiled language, there is an additional runtime to support garbage collection.
-Compared to Java, Go uses a more conservative garbage collection strategy and does
-not aggressively use a space-for-time approach, resulting in decent space consumption
-and less optimistic runtimes for memory allocation in Table~\ref{tab:binary-trees}.
+Compared to Java, Go uses a more conservative garbage collection strategy
+resulting in decent space consumption and less optimistic runtimes for memory
+allocation in Table~\ref{tab:binary-trees}.
 Rust uses an ownership mechanism,
 unlike C/C++, which is purely manually managed, and unlike Go's garbage collection.
 In terms of the underlying implementation, Rust does not actually maintain a runtime
-to manage space but rather determines the timing of unallocating memory at compile
-time through a complex arithmetic ownership algorithm. As a result, Rust's memory
-management is overhead-free. In fact, Rust's compiler backend uses LLVM, the same
-backend as the Clang-LLVM tested above, and it is also clear from the test data that
-Rust performs almost identically to Cpp-Clang in Table~\ref{tab:n-body}.
-However,due to its ownership mechanism, Rust is better at memory allocation. For Swift,
-the memory management mechanism is different from all of the above. Swift allocates
-and deallocates memory by maintaining a runtime reference count. In addition,
-Swift forces reference counts to be updated atomically instead of Rust's compiler
-management of thread safety, which results in high CPU overhead in Table~\ref{tab:binary-trees}. This shows that
-Swift has a higher runtime overhead compared to Rust, confirming the data that
-Swift performs poorly compared to Rust.
+to manage memory but rather determines the timing of unallocating memory at compile
+time through a complex ownership algorithm.
+As a result, Rust's memory management is overhead-free.
+In fact, Rust's compiler backend uses LLVM, the same
+backend as the Clang-LLVM tested above.
+And it is also clear from the data in Table~\ref{tab:n-body} that
+Rust performs almost identically to Cpp-Clang.
+Due to its ownership mechanism, Rust is the best at memory allocation in selected MPLs.
+For Swift, the memory management mechanism is different from all of the above.
+Swift allocates and deallocates memory by maintaining a runtime reference count.
+In addition, Swift forces reference counts to be updated atomically for thread safety,
+which results in higher CPU and memory overhead than Rust in Table~\ref{tab:binary-trees}.
+This shows that Swift has a higher runtime overhead compared to Rust.
 
 \subsection{Floating-point operation test}
 
-The idea comes from the Symplectic Integration algorithm of K. P. Rauch
-and D. P. Hamilton.
-This algorithm simulates the evolution of multiple planets and checks the correctness of the program by examining the energy of each evolutionary state. The performance bottleneck is mainly in floating-point operations.
+This algorithm comes from the Symplectic Integration algorithm of K. P. Rauch and D. P. Hamilton.
+They simulates the evolution of multiple planets and checks the correctness of the program
+by examining the energy of each evolutionary state.
+The performance bottleneck of this algorithm is mainly in floating-point operations.
 The steps are described in Algorithm 2.
 We obtain the CPU and memory overhead results
 for the selected MPLs by taking n=5e7 and n=5e6, respectively,
@@ -252,19 +265,50 @@ as shown in Table~\ref{tab:n-body}.
     \end{subtable}
 \end{table*}
 
+As shown in Table~\ref{tab:binary-trees},
+Java's time overhead is not very high and does not fall too far behind natively compiled languages.
+The performance bottleneck of JVM-based programs with short execution time is mainly the JVM startup
+time and the JIT-optimized warm-up time, and for algorithms that have already done so,
+Java's execution speed does not lag behind that of natively compiled languages.
+Java runs in two steps.
+In the first step, the source code is compiled into bytecode, and in the second step,
+the JVM interprets and executes the bytecode.
+In the process of interpreting and executing the bytecode, JVM will analyze the runtime
+information of the bytecode, and if it finds that some bytecode is executed more frequently,
+it will compile this part of the bytecode into native code.
+Then if programs want to execute bytecode, JVM will first check if there is compiled native code and execute it.
+The so-called performance optimization of Java is mainly in the bytecode stage,
+while the source code to bytecode stage is only a simple optimization.
 
-In Table~\ref{tab:binary-trees},
-Java's time overhead is not very high and does not fall too far behind natively compiled languages. The performance bottleneck of algorithmic programs with short execution time is mainly the JVM startup time and the JIT-optimized warm-up time, and for algorithms that have already done so, Java's execution speed does not lag behind that of natively compiled languages. Java runs in two steps. In the first step, the source code is compiled into bytecode, and in the second step, the JVM interprets and executes the bytecode. In the process of interpreting and executing the bytecode, JVM will receive the runtime information of the collected code, and if it finds that some bytecode is executed more frequently, it will choose to compile this part of the bytecode and compile it into native code, which will be called directly when it is executed again. The so-called performance optimization of Java is mainly in the bytecode, while the source to bytecode stage is only a simple optimization.
-
-In Table~\ref{tab:binary-trees},
-there is a significant performance gap between JavaScript and Python. JavaScript runs on Google's V8 engine, which executes JavaScript code much like the JVM executes bytecode, using the same JIT optimization technique. So compared to Python, which does not use JIT optimization, it has a huge performance improvement, even with Java and natively compiled languages with similar floating point performance. In fact, the speed of scripting languages is not a performance bottleneck in most application scenarios. However, in recent years, JavaScript has become the "assembly of the web", and more and more languages are being compiled into JavaScript, such as Kotlin and Dart, so more and more business logic needs to be executed in JavaScript. This makes JavaScript burdened with tedious business-related logic, and optimization of JavaScript is the trend.
+Table~\ref{tab:binary-trees} presents the significant performance gap between JavaScript and Python.
+They are both so-call scripting language (a part of interpreted language),
+and they interpret source code line by line and execute directly.
+The performance of interpreted languages is closely related to the optimization of its interpreter.
+JavaScript runs on Google's V8 engine, which executes JavaScript code much like the
+JVM executes bytecode, using the JIT optimization technique.
+So compared to Python, which does not use JIT optimization, it has a huge performance
+improvement, even with Java and natively compiled languages with similar floating point performance.
+In fact, the speed of scripting languages is not a performance bottleneck in most application scenarios.
+However, in recent years, JavaScript has become the "assembly of the web",
+and more and more languages are being compiled into JavaScript (e.g., Kotlin and Dart),
+so more and more business logic needs to be executed in JavaScript.
+This makes JavaScript burdened with tedious business-related logic, and optimization of JavaScript is the trend.
+The application scenarios of Python are different from those of JavaScript.
+Python is currently mainly used for scientific computing, data analysis and AI\@.
+The performance of Python itself is relatively low, but most of the so-called Python libraries
+only provide Python interfaces, and the underlying implementation is still other high-performance
+languages (e.g., C).
+This is also a way to improve performance.
 
 \subsection{Comprehensive test}
 
-The Mandelbrot Set is drawn on a resolution N×N image and the coordinates of the image on the complex axis are [-1.5-i,0.5+i]. For each pixel, a certain number of iterations are performed to determine the gray level of the current pixel. The output in PBF format is performed byte by byte. The correctness is checked by comparing it with the standard output. The performance bottleneck of this test is in floating point operations, memory allocation, and IO.
+The Mandelbrot Set is drawn on a resolution N×N image and the coordinates of the image on the complex axis are [-1.5-i,0.5+i].
+For each pixel, a certain number of iterations are performed to determine the gray level of the current pixel.
+Then program output in PBF format byte by byte.
+Its correctness is checked by comparing its output with the standard output.
+The performance bottleneck of this test is in floating point operations, memory allocation, and IO\@.
 The steps are described in Algorithm 3.
-We obtain the CPU and memory overhead results
-for the selected MPLs by taking n=16000 and n=4000, respectively,
+We obtain the CPU and memory overhead results for the selected MPLs by taking n=16000 and n=4000, respectively,
 as shown in Table~\ref{tab:mandelbrot}.
 
 \begin{figure}[htbp]
@@ -323,10 +367,49 @@ as shown in Table~\ref{tab:mandelbrot}.
     \end{subtable}
 \end{table*}
 
-For the same Dart code, it is compiled in two different ways,
-using JIT and AOT. As for the time and memory overhead in Table~\ref{tab:mandelbrot},
-both have similar performance. This is caused by the compilation mechanism of Dart. In fact, the running mechanism of Dart is different from the traditional way. The traditional AOT is to compile the source code directly into the object code on the target machine, which can be called and run independently by the operating system directly. However, for Dart, whether it is AOT or JIT, only the compilation time is different, and it will eventually run on the virtual machine. In fact, when the compilation time is negligible, the time overhead of AOT and JIT is approximately equal. But this way of running has its unique disadvantage. It will significantly increase the running overhead of AOT mode, but this makes AOT compilation has strong runtime support. Because of this feature, the Dart VM can save the current runtime state, and the next time the VM is started, it can directly load the last state without restarting. This is mainly for a better development experience. The incremental compilation feature allows the runtime results to change almost in real time as the code is changed. Dart is a language for the front-end cross-platform framework Flutter. With such a mechanism, code changes can feed back to the UI in real-time, which is hard to do with other languages.
+For the same Dart code, it has two different ways of compiling, JIT and AOT\@.
+Both ways have similar time overhead and memory overhead in the Table~\ref{tab:mandelbrot}.
+This is caused by the compilation mechanism of Dart official compilers.
+In fact, the running mechanism of Dart is different from the traditional way that JIT in JavaScript or AOT in Cpp.
+The traditional AOT is to compile the source code directly into the object code on the target machine,
+which can be called and run independently by the operating system directly.
+However, for Dart, whether its compilation method is AOT or JIT, only their compilation time is different,
+and they will eventually run on the virtual machine.
+In fact, when the compilation time overhead is negligible, the time overhead of AOT and JIT is approximately equal.
+And this way of running has its unique features.
+It will significantly increase the running overhead of AOT mode, but this makes AOT compilation has strong runtime support.
+Because of this feature, the Dart VM can save the current runtime state, and when the next time VM is started,
+it can directly load the last state without startup.
+And the incremental compilation allows Dart to recompile only a small amount of code when the code changes.
+Dart is mainly for the front-end cross-platform framework Flutter.
+With such hot reload and incremental compilation, code changes of Dart can feed back to the UI in real-time,
+which is hard to do with other languages.
+So developers could have a better development experience with Dart.
 
-In industrial applications, the performance bottleneck in most scenarios is compile-related, including not only compile-time but also run-time. The impact of compilation on programming language efficiency is again multifaceted. First, the same programming language with different compilers will often have different object code and thus different runtime efficiency. This is often due to different compile-time optimizations; for example, for C++, there is a significant performance difference in the object code obtained by compiling with Clang-LLVM as opposed to compiling with GCC. Second, the same programming language can run not only in AOT, but also in JIT. For example, for Kotlin, it can be compiled not only as bytecode to run on JVM, but also programmed as JavaScript code to run on the browser, or even Kotlin Native, which can run as native code. In this way, the different compilation methods have a greater impact on efficiency.
+In industrial applications, the performance bottleneck in most scenarios is compile-related,
+including not only compile-time but also run-time.
+The impact of compilation on programming language efficiency is also multifaceted.
+First, the same programming language with different compilers will often have different object codes,
+which results in different runtime efficiency.
+This is often due to different compile-time optimizations;
+for example, for C++, there is a significant performance advantage in object codes obtained by compiling
+with Clang-LLVM as opposed to compiling with GCC\@.
+Second, the same programming language can run not only in AOT, but also in JIT\@.
+For example, for Kotlin, it can be compiled not only to bytecode to run on JVM, but also JavaScript code to run on the browser.
+Or even Kotlin can be compiled to native code, which directly run on the OS\@.
+In this way, the different compilation methods have a greater impact on efficiency of a language.
 
-The impact of memory management on programming language performance is huge. First, there is the matter of memory allocation on the heap. For languages with VM, memory allocation is an advantage compared to non-VM languages. This is because VM languages provide memory pools that host the memory allocation, whereas non-VM languages do not have such an advantage. Of course, for scenarios where memory on the heap is used frequently, non-VM languages tend to use custom or third-party provided memory pooling frameworks, and the performance gap in the industry is not as pronounced. But managed memory is not always an advantage. When a memory thrash occurs, the VM will frequently GC, which also affects performance. And, memory pools tend to have a larger memory overhead. Second, there is the principle of locality about memory. CPU will put all the adjacent data into cache, and if the memory is accessed sequentially, it greatly improves the hit rate of cache, thus improving the performance.
+The impact of memory management on programming language performance is huge too.
+First, there is the matter of memory allocation on the heap.
+For languages with VM, memory allocation is an advantage compared to non-VM languages.
+Developers can focus on business logic without worrying about memory management.
+VM languages provide memory pools that host the memory allocation, whereas non-VM languages do not.
+Of course, under some scenarios, there is a frequently memory allocation on the heap,
+non-VM languages tend to use custom or third-party memory pooling frameworks,
+and the performance gap between VM and non-VM languages in the industry is not as pronounced.
+But managed memory is not always an advantage.
+When a memory thrash occurs, the VM will frequently GC, which greatly affects performance.
+And, managed memory tend to have a larger memory overhead than they actually need (e.g., Java).
+Second, there is the Principle of Locality about memory.
+CPU will put all the adjacent data into cache, and if the memory is accessed sequentially,
+it greatly improves the hit rate of cache, thus improving the performance.

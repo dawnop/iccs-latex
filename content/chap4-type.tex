@@ -26,21 +26,21 @@
 \end{table*}
 
 
-The discussion here is based on L. Cardelli's definition of type systems\cite{cardelli1996type}.
+The discussion below is based on L. Cardelli's definition of type systems\cite{cardelli1996type}.
 L. Cardelli considers that the fundamental purpose of
 type systems of a languages is to prevent errors that occur during the runtime,
 so he discusses type systems by defining concepts related to errors.
-According to Figure~\ref{fig:type-definition}, there are two types of errors.
-An error that immediately results in a fault is called a trapped error.
-The other will not cause fault immediately, called untrapped error.
-All untrapped errors and some trapped errors are collectively
-called forbidden errors.
+%According to Figure~\ref{fig:type-definition}, there are two types of errors.
+%An error that immediately results in a fault is called a trapped error.
+%The other will not cause fault immediately, called untrapped error.
+%All untrapped errors and some trapped errors are collectively
+%called forbidden errors.
 
-\begin{figure}[htbp]
-    \centerline{\includegraphics[scale=0.8]{figures/type-definition}}
-    \caption{Definition of forbidden error}
-    \label{fig:type-definition}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centerline{\includegraphics[scale=0.8]{figures/type-definition}}
+%    \caption{Definition of forbidden error}
+%    \label{fig:type-definition}
+%\end{figure}
 
 
 programming languages are divided into (statically) typed languages and (statically) untyped languages
@@ -58,7 +58,7 @@ forbidden errors during execution.
 According to the above definition,
 we have analyzed 9 selected languages and got the Table~\ref{tab:type}.
 
-There is one thing to note.
+%There is one thing to note.
 Type hints were introduced in Python in version 3.5.
 But type hints do not actually do error checking for Python.
 It is simply a type annotation to help provide better support
